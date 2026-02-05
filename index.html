@@ -98,4 +98,73 @@ button{
 <body>
 
 <div class="card">
-  <h2>Anshika 🫂🫂
+  <h2>Anshika 🫂🫂🫂</h2>
+
+  <div id="typing"></div>
+
+  <div class="btns">
+    <button id="yes">YES 💕</button>
+    <button id="no">NO 😜</button>
+  </div>
+</div>
+
+<audio id="noSound" src="no.mp3"></audio>
+
+<script>
+/* typing effect */
+const text="Will you be my Valentine Dugli 💖";
+let i=0;
+const typing=document.getElementById("typing");
+(function type(){
+  if(i<text.length){
+    typing.innerHTML+=text.charAt(i++);
+    setTimeout(type,120);
+  }
+})();
+
+/* emoji rain */
+const emojis=["💖","🫶","🥰","🫂","😍"];
+setInterval(()=>{
+  let e=document.createElement("div");
+  e.className="emoji";
+  e.innerText=emojis[Math.floor(Math.random()*emojis.length)];
+  e.style.left=Math.random()*100+"%";
+  e.style.animationDuration=(3+Math.random()*3)+"s";
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),6000);
+},300);
+
+/* NO button runaway */
+const no=document.getElementById("no");
+const sound=document.getElementById("noSound");
+no.onclick=()=>{
+  sound.play();
+  navigator.vibrate(300);
+  no.style.position="fixed";
+  no.style.left=Math.random()*80+"%";
+  no.style.top=Math.random()*80+"%";
+};
+
+/* YES heart blast */
+function heartBlast(){
+  for(let j=0;j<20;j++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerText="💖";
+    h.style.left="50%";
+    h.style.top="50%";
+    h.style.setProperty("--x",(Math.random()*300-150)+"px");
+    h.style.setProperty("--y",(Math.random()*300-150)+"px");
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),1500);
+  }
+}
+
+document.getElementById("yes").onclick=()=>{
+  heartBlast();
+  setTimeout(()=>window.location="surprise.html",1200);
+};
+</script>
+
+</body>
+</html>
