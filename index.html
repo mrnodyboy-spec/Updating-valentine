@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>For Anshika 💖</title>
+
 <style>
 body{
   margin:0;
@@ -14,36 +15,58 @@ body{
   font-family:cursive;
   overflow:hidden;
 }
+
 .card{
   background:white;
   padding:25px;
-  border-radius:20px;
+  border-radius:22px;
   text-align:center;
   width:85%;
-  max-width:320px;
-  box-shadow:0 20px 40px rgba(0,0,0,0.2);
+  max-width:330px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.25);
 }
+
 h2{
+  font-size:26px;
   animation: zoom 2s infinite alternate;
 }
+
 @keyframes zoom{
   from{transform:scale(1);}
-  to{transform:scale(1.1);}
+  to{transform:scale(1.08);}
 }
+
+#typing{
+  font-size:28px;
+  font-weight:bold;
+  color:#ff2f92;
+  min-height:70px;
+}
+
 button{
-  padding:10px 20px;
+  padding:10px 22px;
   border:none;
   border-radius:20px;
   font-size:18px;
   margin:10px;
 }
-#yes{background:#ff4d6d;color:white;}
-#no{background:#ccc;position:absolute;}
+
+#yes{
+  background:#ff4d6d;
+  color:white;
+}
+
+#no{
+  background:#ccc;
+  position:absolute;
+}
+
 .emoji{
   position:absolute;
   font-size:24px;
   animation: fall 4s linear infinite;
 }
+
 @keyframes fall{
   from{top:-10%;}
   to{top:110%;}
@@ -55,7 +78,7 @@ button{
 
 <div class="card">
   <h2>Anshika 🫂🫂🫂</h2>
-  <p>I love you sooooo muchhhhhh 💖</p>
+  <div id="typing"></div>
   <button id="yes">YES 💕</button>
 </div>
 
@@ -64,7 +87,22 @@ button{
 <audio id="noSound" src="no.mp3"></audio>
 
 <script>
-/* emoji rain */
+/* ---------- TYPEWRITER TEXT ---------- */
+const text = "Will you be my Valentine Dugli 💖";
+let index = 0;
+const speed = 120; // slow typing
+const typingDiv = document.getElementById("typing");
+
+function typeEffect(){
+  if(index < text.length){
+    typingDiv.innerHTML += text.charAt(index);
+    index++;
+    setTimeout(typeEffect, speed);
+  }
+}
+typeEffect();
+
+/* ---------- EMOJI RAIN ---------- */
 const emojis=["💖","🫶","🥰","🫂","😍"];
 setInterval(()=>{
   let e=document.createElement("div");
@@ -76,7 +114,7 @@ setInterval(()=>{
   setTimeout(()=>e.remove(),6000);
 },300);
 
-/* no button runaway */
+/* ---------- NO BUTTON RUN ---------- */
 const no=document.getElementById("no");
 const sound=document.getElementById("noSound");
 
@@ -87,7 +125,7 @@ no.onclick=()=>{
   no.style.top=Math.random()*80+"%";
 };
 
-/* yes */
+/* ---------- YES CLICK ---------- */
 document.getElementById("yes").onclick=()=>{
   window.location="surprise.html";
 };
